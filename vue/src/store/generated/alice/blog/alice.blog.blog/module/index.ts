@@ -5,14 +5,14 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
 import { MsgCreateHello } from "./types/blog/tx";
-import { MsgDeleteHello } from "./types/blog/tx";
 import { MsgUpdateHello } from "./types/blog/tx";
+import { MsgDeleteHello } from "./types/blog/tx";
 
 
 const types = [
   ["/alice.blog.blog.MsgCreateHello", MsgCreateHello],
-  ["/alice.blog.blog.MsgDeleteHello", MsgDeleteHello],
   ["/alice.blog.blog.MsgUpdateHello", MsgUpdateHello],
+  ["/alice.blog.blog.MsgDeleteHello", MsgDeleteHello],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -42,8 +42,8 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
     msgCreateHello: (data: MsgCreateHello): EncodeObject => ({ typeUrl: "/alice.blog.blog.MsgCreateHello", value: data }),
-    msgDeleteHello: (data: MsgDeleteHello): EncodeObject => ({ typeUrl: "/alice.blog.blog.MsgDeleteHello", value: data }),
     msgUpdateHello: (data: MsgUpdateHello): EncodeObject => ({ typeUrl: "/alice.blog.blog.MsgUpdateHello", value: data }),
+    msgDeleteHello: (data: MsgDeleteHello): EncodeObject => ({ typeUrl: "/alice.blog.blog.MsgDeleteHello", value: data }),
     
   };
 };
