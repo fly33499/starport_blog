@@ -83,6 +83,7 @@ import (
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 	tmjson "github.com/tendermint/tendermint/libs/json"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 	blogmodule "github.com/alice/blog/x/blog"
 	blogmodulekeeper "github.com/alice/blog/x/blog/keeper"
@@ -92,8 +93,8 @@ import (
 )
 
 const (
-	AccountAddressPrefix = "cosmos"
-	Name                 = "blog"
+	AccountAddressPrefix = "firma"
+	Name                 = "FirmaChain"
 )
 
 // this line is used by starport scaffolding # stargate/wasm/app/enabledProposals

@@ -4,12 +4,40 @@ package alice.blog.blog;
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 // this line is used by starport scaffolding # 1
+import "blog/hello.proto";
 
 option go_package = "github.com/alice/blog/x/blog/types";
 
 // Query defines the gRPC querier service.
 service Query {
     // this line is used by starport scaffolding # 2
+
+	// Queries a hello by id.
+	rpc Hello(QueryGetHelloRequest) returns (QueryGetHelloResponse) {
+		option (google.api.http).get = "/alice/blog/blog/hello/{id}";
+	}
+
+	// Queries a list of hello items.
+	rpc HelloAll(QueryAllHelloRequest) returns (QueryAllHelloResponse) {
+		option (google.api.http).get = "/alice/blog/blog/hello";
+	}
+
 }
 
 // this line is used by starport scaffolding # 3
+message QueryGetHelloRequest {
+	uint64 id = 1;
+}
+
+message QueryGetHelloResponse {
+	Hello Hello = 1;
+}
+
+message QueryAllHelloRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHelloResponse {
+	repeated Hello Hello = 1;
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
